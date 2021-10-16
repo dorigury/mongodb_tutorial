@@ -8,11 +8,19 @@ const { generateFakeData } = require("../faker2");
 
 const mongoose = require("mongoose");
 
-const MONGO_URI =
-  "mongodb+srv://admin:dodory21283122@monggodbtutorial.yoesd.mongodb.net/BlogService?retryWrites=true&w=majority";
+// const MONGO_URI =
+//   "mongodb+srv://admin:dodory21283122@monggodbtutorial.yoesd.mongodb.net/BlogService?retryWrites=true&w=majority";
+
+//const { MONGO_URI } = process.env;
+//console.log(MONGO_URI);
+//if (!MONGO_URI) console.error("MONGO_URI is required!!!");
 
 const server = async () => {
   try {
+    const { MONGO_URI } = process.env;
+
+    if (!MONGO_URI) throw new Error("MONGO_URI is required!!!");
+
     await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
